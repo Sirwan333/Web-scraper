@@ -8,18 +8,13 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsdoc": "^30.5.1",
     "eslint-plugin-standard": "^4.0.1",
-    "htmlhint": "^0.14.1",
-    "jsonlint": "^1.6.3",
-    "standard": "*",
-    "stylelint": "^13.7.1"
+    "standard": "*"
   },
   "scripts": {
     "clean": "rm -rf node_modules src/*/node_modules",
-    "htmlhint": "npx htmlhint ./src || exit 0",
-    "lint": "npx eslint ./src || exit 0",
-    "lint:fix": "npx eslint ./src --fix || exit 0",
-    "stylelint": "npx stylelint \"./src/**/*.css\" || exit 0",
-    "test": "npm run lint && npm run htmlhint"
+    "lint": "npx eslint . || exit 0",
+    "lint:fix": "npx eslint . --fix || exit 0",
+    "test": "npm run lint"
   },
   "dependencies": {
     "nodemon": "^2.0.6"
