@@ -1,7 +1,9 @@
 const request = require('request')
 const cheerio = require('cheerio')
+const Calender = require('./modules/Calendar.js')
 
 const array = []
+let str = '' 
 const p = new Promise((resolve, reject) => {
   request('http://vhost3.lnu.se:20080/weekend', (err, response, html) => {
     if (!err && response.statusCode === 200) {
@@ -14,14 +16,7 @@ const p = new Promise((resolve, reject) => {
       })
     }
   })
-})
-
-p.then(() => {
-  console.log(array[0])
-}).then(() => {
-  console.log(array[1])
-}).then(() => {
-  console.log(array[2])
-}).catch(() => {
-  console.log('Failed')
-})
+}).then(() => Calender.getTheDay(array[0]))
+  .then(() => console.log(array[1]))
+  .then(() => console.log(array[2]))
+  .catch(() => console.log('Failed'))
