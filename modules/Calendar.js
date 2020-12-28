@@ -10,6 +10,7 @@ const person1 = []
 const person2 = []
 const person3 = []
 const array = []
+const days = []
 function getTheDay (url1) {
   return new Promise((resolve, reject) => {
     request(`${url1}`, (err, response, html) => {
@@ -54,10 +55,11 @@ function checkForAvailbilty (index, url) {
 
 function retDay () {
   if (person1[0].toLowerCase() === 'ok' && person2[0].toLowerCase() === 'ok' && person3[0].toLowerCase() === 'ok') {
-    return 'F'
+    days.push('Friday')
   } else if (person1[1].toLowerCase() === 'ok' && person2[1].toLowerCase() === 'ok' && person3[1].toLowerCase() === 'ok') {
-    return 'S'
+    days.push('Saturday')
   } else if (person1[2].toLowerCase() === 'ok' && person2[2].toLowerCase() === 'ok' && person3[2].toLowerCase() === 'ok') {
-    return 'Su'
+    days.push('Sunday')
   }
+  return days
 }
