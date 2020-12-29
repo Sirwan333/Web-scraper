@@ -1,10 +1,11 @@
 const request = require('request')
 const request1 = require('request-promise')
 const cheerio = require('cheerio')
-const Calender = require('./Calendar.js')
-const fetch = require('node-fetch')
+
 let location
 let cookie
+const availbleMovies = []
+
 async function submitLogin (url) {
   return new Promise(async (resolve, reject) => {
     const options = {
@@ -47,15 +48,23 @@ function getPage (cookie, location, url) {
       if (err) {
         return console.log(err)
       }
-       const $ = cheerio.load(html)
-          const elemnt = $('p').text() 
-      console.log(`Status: ${res.statusCode}`)
-      
-    console.log(elemnt)
+      const $ = cheerio.load(html)
+      const days = $('b')
+      $(days).each((index, elm) => {
+        const elemnt = $(elm).parent().parent().next().next().children()
+        $(elemnt).each((i, el) => {
+          availbleMovies.push({
+            day: $(elm).text(),
+            time: $(el).text()
+          })
+        })
+      })
+      console.log(availbleMovies)
     })
     resolve()
   })
 }
 module.exports = {
-  submitLogin: submitLogin
+  submitLogin: submitLogin,
+  availbleMovies: availbleMovies
 }
