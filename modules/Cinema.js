@@ -3,11 +3,7 @@ const cheerio = require('cheerio')
 const Calender = require('./Calendar.js')
 const fetch = require('node-fetch')
 
-module.exports = {
-  getTheMovie: getTheMovie
-}
 let availableDays = []
-let availableMovies = ['01', '02', '03']
 let movies = []
 let avMovie = []
 
@@ -26,10 +22,8 @@ async function fetchURL (url) {
             })
           }
         }
-        //movies.push(JSON.stringify(commits))
       }
     }
-    console.log(avMovie)
     resolve()
   })
 }
@@ -79,4 +73,8 @@ function getAvailabeMovies (url) {
       }
     })
   })
+}
+module.exports = {
+  getTheMovie: getTheMovie,
+  avMovie: avMovie
 }
