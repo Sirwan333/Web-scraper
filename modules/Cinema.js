@@ -56,6 +56,11 @@ async function fetchURL (url) {
 function getDays () {
   return new Promise((resolve, reject) => {
     const d = Calender.retDay()
+    if (d.length === 0) {
+      console.log('Sorry no available days')
+      resolve()
+      process.exit()
+    }
     for (const element of d) {
       if (element === 'Friday') {
         const day = '05'

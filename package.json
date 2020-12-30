@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "devstart": "nodemon --inspect ./app.js",
-    "start": "node app.js || exit 0",
+    "start": "node app.js",
     "lint": "npx eslint . || exit 0",
     "lint:fix": "npx eslint . --fix || exit 0"
   },

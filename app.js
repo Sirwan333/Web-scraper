@@ -9,11 +9,12 @@ const array = []
 /**
  * It scrapes the three links of the starting page.
  *
+ * @param {string} url the start url from the command line
  * @returns {Promise} a new promise when scraping links is done and then moves to other promises
  */
-async function startScraping () {
+async function startScraping (url) {
   return new Promise((resolve, reject) => {
-    request('http://vhost3.lnu.se:20080/weekend', (err, response, html) => {
+    request(url, (err, response, html) => {
       if (!err && response.statusCode === 200) {
         const $ = cheerio.load(html)
         const elemnt = $('ol').children('li')
@@ -32,4 +33,8 @@ async function startScraping () {
     .catch(() => console.log('Failed'))
 }
 
-startScraping()
+if (process.argv[2]) {
+  startScraping(process.argv[2])
+} else {
+  console.log('Please make sure you have provided the url')
+}
