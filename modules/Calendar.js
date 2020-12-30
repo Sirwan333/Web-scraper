@@ -11,7 +11,13 @@ const person2 = []
 const person3 = []
 const array = []
 const days = []
-function getTheDay (url1) {
+/**
+ * It scrapes the url of the three persons.
+ *
+ * @param {string} url1 a url for the calander page.
+ * @returns {Promise} a new promise when scraping is done.
+ */
+async function getTheDay (url1) {
   return new Promise((resolve, reject) => {
     request(`${url1}`, (err, response, html) => {
       if (!err && response.statusCode === 200) {
@@ -32,6 +38,13 @@ function getTheDay (url1) {
     .catch(() => console.log('Failed'))
 }
 
+/**
+ * It scrapes the person page and save his calander in an array.
+ *
+ * @param {any} index to sperate the three persons arrays.
+ * @param {string} url a specefic url to the person.
+ * @returns {Promise} a new promise when scraping is done.
+ */
 function checkForAvailbilty (index, url) {
   return new Promise((resolve, reject) => {
     request(`${url}`, (err, response, html) => {
@@ -54,6 +67,11 @@ function checkForAvailbilty (index, url) {
   })
 }
 
+/**
+ * It compares all persons arrays to get the available day for all.
+ *
+ * @returns {any[]} the availabe days after comaring all friends.
+ */
 function retDay () {
   if (person1[0].toLowerCase() === 'ok' && person2[0].toLowerCase() === 'ok' && person3[0].toLowerCase() === 'ok') {
     days.push('Friday')

@@ -5,8 +5,14 @@ const cheerio = require('cheerio')
 let location
 let cookie
 const availbleMovies = []
-
+/**
+ * It sends post request to the resturant login with crednitals and then a saves the cookie and location.
+ *
+ * @param {string} url url of the resturant
+ * @returns {Promise} a new promise when scraping is done.
+ */
 async function submitLogin (url) {
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     const options = {
       url: url + '/login',
@@ -23,20 +29,22 @@ async function submitLogin (url) {
       if (err) {
         return console.log(err)
       }
-      /* const $ = cheerio.load(html)
-      const elemnt = $('p') */
-      //console.log(`Status: ${res.statusCode}`)
       location = res.headers.location
       cookie = res.headers['set-cookie'][0].split(';')[0]
-      //console.log(location)
-      //console.log(cookie)
-      // console.log(elemnt)
     })
     resolve()
   }).then(() => getPage(cookie, location, url)).catch(() => console.log('Failed'))
 }
-
+/**
+ * It sends post request to the resturant login with crednitals and then a saves the cookie and location.
+ *
+ * @param {object} cookie the cookie after login.
+ * @param {object} location location of the next page after login.
+ * @param {string} url url of the resturant
+ * @returns {Promise} a new promise when scraping is done.
+ */
 function getPage (cookie, location, url) {
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     const options1 = {
       url: url + '/' + location,

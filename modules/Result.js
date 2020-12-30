@@ -1,6 +1,10 @@
 const Cinema = require('./Cinema.js')
 const Restaurant = require('./Restaurant.js')
-
+/**
+ * It presents the results in the console.
+ *
+ * @returns {Promise} a new promise when scraping is done.
+ */
 async function seeRes () {
   return new Promise((resolve, reject) => {
     console.log('Recommendations')
