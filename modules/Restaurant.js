@@ -25,11 +25,11 @@ async function submitLogin (url) {
       }
       /* const $ = cheerio.load(html)
       const elemnt = $('p') */
-      console.log(`Status: ${res.statusCode}`)
+      //console.log(`Status: ${res.statusCode}`)
       location = res.headers.location
       cookie = res.headers['set-cookie'][0].split(';')[0]
-      console.log(location)
-      console.log(cookie)
+      //console.log(location)
+      //console.log(cookie)
       // console.log(elemnt)
     })
     resolve()
@@ -48,20 +48,23 @@ function getPage (cookie, location, url) {
       if (err) {
         return console.log(err)
       }
+      console.log(res.statusCode)
       const $ = cheerio.load(html)
       const days = $('b')
       $(days).each((index, elm) => {
         const elemnt = $(elm).parent().parent().next().next().children()
         $(elemnt).each((i, el) => {
-          availbleMovies.push({
-            day: $(elm).text(),
-            time: $(el).text()
-          })
+          if ($(el).text().replace(/\s\s+/g, '').charAt(7) === 'r') {
+            availbleMovies.push({
+              day: $(elm).text().replace(/\s\s+/g, ''),
+              time: parseInt($(el).text().replace(/\s\s+/g, '').substring(0, 2))
+            })
+          }
         })
       })
       console.log(availbleMovies)
+      resolve()
     })
-    resolve()
   })
 }
 module.exports = {

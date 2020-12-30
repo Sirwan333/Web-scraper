@@ -15,11 +15,25 @@ async function fetchURL (url) {
         let commits = await response.json()
         for await (const element of commits) {
           if (element.status !== 0) {
-            avMovie.push({
-              day: day,
-              time: parseInt(element.time.substring(0, 2)),
-              movie: movie.movie
-            })
+            if (day === '05') {
+              avMovie.push({
+                day: 'Friday',
+                time: parseInt(element.time.substring(0, 2)),
+                movie: movie.movie
+              })
+            } else if ( day === '06') {
+              avMovie.push({
+                day: 'Saturday',
+                time: parseInt(element.time.substring(0, 2)),
+                movie: movie.movie
+              })
+            } else if ( day === '07') {
+              avMovie.push({
+                day: 'Sunday',
+                time: parseInt(element.time.substring(0, 2)),
+                movie: movie.movie
+              })
+            }
           }
         }
       }
@@ -31,6 +45,7 @@ async function fetchURL (url) {
 function getDays () {
   return new Promise((resolve, reject) => {
     const d = Calender.retDay()
+    console.log(d)
     for (const element of d) {
       if (element === 'Friday') {
         let day = '05'

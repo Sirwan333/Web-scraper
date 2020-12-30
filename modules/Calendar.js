@@ -28,6 +28,7 @@ function getTheDay (url1) {
     () => checkForAvailbilty(0, array[0]))
     .then(() => checkForAvailbilty(1, array[1]))
     .then(() => checkForAvailbilty(2, array[2]))
+    .then(() => console.log(person3))
     .catch(() => console.log('Failed'))
 }
 
@@ -56,9 +57,11 @@ function checkForAvailbilty (index, url) {
 function retDay () {
   if (person1[0].toLowerCase() === 'ok' && person2[0].toLowerCase() === 'ok' && person3[0].toLowerCase() === 'ok') {
     days.push('Friday')
-  } else if (person1[1].toLowerCase() === 'ok' && person2[1].toLowerCase() === 'ok' && person3[1].toLowerCase() === 'ok') {
+  }
+  if (person1[1].toLowerCase() === 'ok' && person2[1].toLowerCase() === 'ok' && person3[1].toLowerCase() === 'ok') {
     days.push('Saturday')
-  } else if (person1[2].toLowerCase() === 'ok' && person2[2].toLowerCase() === 'ok' && person3[2].toLowerCase() === 'ok') {
+  }
+  if (person1[2].toLowerCase() === 'ok' && person2[2].toLowerCase() === 'ok' && person3[2].toLowerCase() === 'ok') {
     days.push('Sunday')
   }
   return days
