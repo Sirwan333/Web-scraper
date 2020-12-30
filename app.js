@@ -15,8 +15,9 @@ const p = new Promise((resolve, reject) => {
       $(elemnt).each((i, el) => {
         const url = $(el).find('a').attr('href')
         array.push(url)
-        resolve()
       })
+      console.log('Scraping links...OK')
+      resolve()
     }
   })
 }).then(() => Calender.getTheDay(array[0]))

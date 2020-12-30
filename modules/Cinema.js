@@ -38,6 +38,7 @@ async function fetchURL (url) {
         }
       }
     }
+    console.log('Scraping showtimes...OK')
     resolve()
   })
 }
@@ -45,7 +46,6 @@ async function fetchURL (url) {
 function getDays () {
   return new Promise((resolve, reject) => {
     const d = Calender.retDay()
-    console.log(d)
     for (const element of d) {
       if (element === 'Friday') {
         let day = '05'

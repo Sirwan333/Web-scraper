@@ -48,7 +48,6 @@ function getPage (cookie, location, url) {
       if (err) {
         return console.log(err)
       }
-      console.log(res.statusCode)
       const $ = cheerio.load(html)
       const days = $('b')
       $(days).each((index, elm) => {
@@ -62,7 +61,7 @@ function getPage (cookie, location, url) {
           }
         })
       })
-      console.log(availbleMovies)
+      console.log('Scraping possible reservations...OK\n')
       resolve()
     })
   })

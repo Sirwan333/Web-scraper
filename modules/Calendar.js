@@ -28,7 +28,7 @@ function getTheDay (url1) {
     () => checkForAvailbilty(0, array[0]))
     .then(() => checkForAvailbilty(1, array[1]))
     .then(() => checkForAvailbilty(2, array[2]))
-    .then(() => console.log(person3))
+    .then(() => console.log('Scraping available days...OK'))
     .catch(() => console.log('Failed'))
 }
 
